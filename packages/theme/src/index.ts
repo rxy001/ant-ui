@@ -6,5 +6,7 @@ export { dynamicVars, createRuntimeFn } from './utils'
 
 export { setElementVars } from '@vanilla-extract/dynamic'
 
+export { styles } from './styles'
+
 // export * from './colors'
 // export * from './sprinkles/index.css'

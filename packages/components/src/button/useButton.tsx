@@ -4,6 +4,7 @@ import {
   buttonEndIcon,
   dynamicVars,
   btnTokens,
+  styles,
 } from '@nex-ui/theme'
 import { useMemo } from 'react'
 import classNames from 'classnames'
@@ -20,6 +21,8 @@ const ButtonEndIcon = ({ children, size }: ButtonIconProps) => (
   // @ts-ignore
   <span className={buttonEndIcon({ size })}>{children}</span>
 )
+
+console.log(styles.style)
 
 export const useButton = ({
   style,
@@ -52,7 +55,8 @@ export const useButton = ({
     () =>
       classNames(
         `${prefix}-btn`,
-        button({ variant, size, disabled, block, shape, loading, iconOnly }),
+        // button({ variant, size, disabled, block, shape, loading, iconOnly }),
+        styles.className,
         className,
       ),
     [

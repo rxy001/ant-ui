@@ -31,7 +31,9 @@
       "version": "detect"
     },
     "import/resolver": {
-      "typescript": true
+      "typescript": {
+        "project": ["tsconfig.json", "packages/**/tsconfig.json"]
+      }
     }
   },
   "rules": {

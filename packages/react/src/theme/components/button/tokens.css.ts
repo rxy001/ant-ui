@@ -46,6 +46,6 @@ const tokens = {
   linkActiveBgc: 'transparent',
 }
 
-export const [btnClass, btnTokens] = createTheme(tokens)
+export const [tokenClasses, btnTokens] = createTheme(tokens)
 
 export type BtnTokens = typeof tokens

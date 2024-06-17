@@ -1,15 +1,15 @@
-# 动态主题方案的选择
+# CSS 方案
 
-1. sass + css vars. 首先想到的就是常用 css 预处理器 `sass` 配合 `css variable` 方案:
+1. sass、less.
 
    - 优点
      1. 编译后的 css 文件，可直接由浏览器解析，主题之间无缝切换，无额外的性能消耗。
    - 缺点
      1. 灵活定制主题的能力不足，如嵌套主题 (实际可通过 style 设置 css variables)。
-     2. css 的按需加载，需手动引入组件相关联的 css 文件或者借助 babel-plugin-import。
-     3. 无法使用 JS 常量。
-     4. css 与 js 分布与不同的位置，随着应用的发展，难以发现现有 css 文件中的 dead code。
-     5. 无样式静态类型。
+     2. 无法使用 JS 常量。
+     3. css 与 js 分布与不同的位置，随着应用的发展，难以发现现有 css 文件中的 dead code。
+     4. 无样式静态类型。
+     5. 样式无法懒加载。
 
 2. CSS-in-JS. 这也是 Antd、MUI 等组件库的实现方案。
 
@@ -56,6 +56,4 @@
 
      移动外组建外后，序列化只在组建加载时执行一次，而不是每次渲染时。 但失去了访问 props/state 的能力。
 
-## 两种方案在多主题下各有优劣
-
-1. CSS-in-JS 动态生成 css, 无 css side effects, 无需配置任何插件即可支持打包工具的 tree shaking.
+上述是运行时 css-in-js, 目前还有另外一种方案编译时 css-in-js，没有运行时的消耗，在编译时生成所需 css 文件，有点类似于 scss。

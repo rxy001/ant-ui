@@ -3,31 +3,33 @@ import { forEach, map } from '@nex-ui/utils'
 
 type Styles = Record<string, StyleRule>
 
-type UtilityClasses<T extends Styles> = {
-  [key in keyof T]?: string
-}
+const existingKeys = new Set()
 
-const utilityClasses: UtilityClasses<Styles> = {}
+export const createUtilityClasses = <S extends Styles>(styles: S) => {
+  const utilityClasses: {
+    [key in keyof S]?: string
+  } = {}
 
-export const createUtilityClasses = (styles: Styles) => {
-  forEach(styles, (value: StyleRule, key: string) => {
-    if (utilityClasses[key]) {
+  forEach(styles, (value: StyleRule, key: keyof S) => {
+    if (existingKeys.has(key)) {
       throw new Error(
         `Error: The same class name already exists. ${String(key)}`,
       )
     } else {
       utilityClasses[key] = style(value)
+      existingKeys.add(key)
     }
   })
+
+  return function applyUtilityClasses(classes: (keyof S)[]) {
+    return map(classes, (className: keyof S) => utilityClasses[className])
+      .filter((v?: string) => !!v)
+      .join(' ')
+  }
 }
 
-export function applyUtilityClasses(
-  classes: (keyof typeof utilityClasses)[],
-): string {
-  return map(
-    classes,
-    (className: keyof typeof utilityClasses) => utilityClasses[className],
-  )
-    .filter((v: string | undefined) => !!v)
-    .join(' ')
-}
+export type UtilityClasses<T extends (args: any[]) => string> = T extends (
+  args: infer P,
+) => any
+  ? P
+  : never

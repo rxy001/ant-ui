@@ -1,4 +1,4 @@
-import { style, generateIdentifier, globalStyle } from '@vanilla-extract/css'
+import { style } from '@vanilla-extract/css'
 import type { StyleRule as OriginalStyleRule } from '@vanilla-extract/css'
 import { forEach, isPlainObject } from '@nex-ui/utils'
 import { addFunctionSerializer } from '@vanilla-extract/css/functionSerializer'
@@ -62,19 +62,13 @@ function filterNonNullableStyle(styleRule: OriginalStyleRule) {
   return filtered
 }
 
-function processStyle(styleRule: StyleRule, whereSelector?: boolean): string {
+function processStyle(styleRule: StyleRule): string {
   if (typeof styleRule === 'string') {
     return styleRule
   }
 
   if (Array.isArray(styleRule)) {
-    return styleRule.map((k) => processStyle(k, whereSelector)).join(' ')
-  }
-
-  if (whereSelector === true && isPlainObject(styleRule)) {
-    const className = generateIdentifier()
-    globalStyle(`:where(.${className})`, filterNonNullableStyle(styleRule))
-    return className
+    return styleRule.map((k) => processStyle(k)).join(' ')
   }
 
   if (isPlainObject(styleRule)) {
@@ -113,15 +107,16 @@ export function recipe<
   } = options
 
   let classes: SlotClasses<Slots> | string = ''
+
+  if (slots && typeof slots === 'object') {
+    classes = mapValues(slots, (value) => processStyle(value))
+  } else if (base !== undefined) {
+    classes = processStyle(base)
+  }
+
   const variantClasses = mapValues(variants, (variant) =>
     mapValues(variant, (styleRule) => processStyle(styleRule)),
   ) as VariantClasses<Variants>
-
-  if (slots && typeof slots === 'object') {
-    classes = mapValues(slots, (value) => processStyle(value, true))
-  } else if (base !== undefined) {
-    classes = processStyle(base, true)
-  }
 
   function compoundStyle(styleRule: StyleRule | Slots) {
     if (styleRule && typeof styleRule === 'object') {

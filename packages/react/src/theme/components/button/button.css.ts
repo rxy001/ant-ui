@@ -1,7 +1,7 @@
 import { calc, recipe, globalKeyframes } from '@nex-ui/styled'
 import type { RecipeVariants } from '@nex-ui/styled'
 import { globalTokens } from '../../globalTokens.css'
-import { btnClass, btnTokens } from './tokens.css'
+import { tokenClasses, btnTokens } from './tokens.css'
 
 function variantStyle(
   backgroundColor?: string,
@@ -52,7 +52,7 @@ function roundStyle(controlHeight: string) {
 
 export const button = recipe({
   base: [
-    btnClass,
+    tokenClasses,
     {
       outline: 'none',
       userSelect: 'none',
@@ -143,14 +143,6 @@ export const button = recipe({
           '&:disabled, &[data-disabled=true]': {
             cursor: 'not-allowed',
             color: btnTokens.fontColorDisabled,
-            '& > *': {
-              pointerEvents: 'none',
-            },
-            '& > a': {
-              color: btnTokens.fontColorDisabled,
-              outline: 'none',
-              textDecoration: 'none',
-            },
           },
         },
       },

@@ -1,15 +1,11 @@
 import type { ReactNode } from 'react'
-import type { GlobalTokens, BtnTokens } from '@theme'
+import type { DefaultTheme } from '@theme'
 
-export type ComponentTokens = {
-  button: Partial<BtnTokens & GlobalTokens>
-  global: Partial<GlobalTokens>
-}
-
-export type NexUIProviderProps = {
-  theme?: Partial<ComponentTokens>
-  children?: ReactNode
+export type NexContext = {
+  theme?: DefaultTheme
   prefix?: string
 }
 
-export type ComponentKey = keyof ComponentTokens
+export type NexProviderProps = NexContext & {
+  children?: ReactNode
+}

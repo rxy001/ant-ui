@@ -8,6 +8,8 @@ export * from './useEvent'
 
 export * from './isPlainObject'
 
+export * from './craeteContext'
+
 export { default as map } from 'lodash.map'
 
 export { default as forEach } from 'lodash.foreach'

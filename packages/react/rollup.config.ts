@@ -4,7 +4,6 @@ import { defineConfig } from 'rollup'
 import typescript from '@rollup/plugin-typescript'
 import del from 'rollup-plugin-delete'
 import dts from 'rollup-plugin-dts'
-import { nexUIRollupPlugin } from '@nex-ui/plugins'
 
 const dirname = fileURLToPath(new URL('./', import.meta.url))
 
@@ -16,9 +15,6 @@ export default defineConfig([
       }),
       typescript({
         tsconfig: path.resolve(dirname, 'tsconfig.json'),
-      }),
-      nexUIRollupPlugin({
-        identifiers: ({ hash }) => `css_${hash}`,
       }),
     ],
     input: './src/index.ts',
@@ -32,9 +28,6 @@ export default defineConfig([
       'classnames',
       'framer-motion',
       '@iconify/react',
-      '@vanilla-extract/dynamic',
-      '@vanilla-extract/css',
-      '@vanilla-extract/css/functionSerializer',
     ],
     output: [
       {

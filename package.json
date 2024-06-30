@@ -24,15 +24,13 @@
     "@rollup/plugin-typescript": "11.1.6",
     "@testing-library/dom": "10.1.0",
     "@testing-library/jest-dom": "6.4.5",
-    "@testing-library/react": "15.0.7",
-    "@testing-library/react-hooks": "8.0.1",
+    "@testing-library/react": "16.0.0",
     "@testing-library/user-event": "14.5.2",
     "@types/node": "20.12.13",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.1.0",
     "@typescript-eslint/parser": "^7.1.0",
-    "@vanilla-extract/jest-transform": "1.1.5",
     "clean-package": "2.2.0",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -45,7 +43,6 @@
     "jest-environment-jsdom": "29.7.0",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
-    "react": "^18.3.1",
     "rollup": "4.17.2",
     "rollup-plugin-delete": "2.0.0",
     "rollup-plugin-dts": "6.1.0",
@@ -57,5 +54,8 @@
   "packageManager": "pnpm@9.0.6",
   "engines": {
     "node": ">=18"
+  },
+  "overrides": {
+    "@testing-library/react": {}
   }
 }

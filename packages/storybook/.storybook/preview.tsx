@@ -1,6 +1,7 @@
 import { themes } from '@storybook/theming'
+import { NexProvider, defaultTheme } from '@nex-ui/react'
 
-export const preview = {
+const preview = {
   darkMode: {
     current: 'dark',
     stylePreview: true,
@@ -22,4 +23,13 @@ export const preview = {
       },
     },
   },
+  decorators: [
+    (Story: any) => (
+      <NexProvider theme={defaultTheme}>
+        <Story />
+      </NexProvider>
+    ),
+  ],
 }
+
+export default preview

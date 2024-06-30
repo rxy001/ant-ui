@@ -1,6 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { NexUIProvider } from '../../provider'
-import { type NexUIProviderStore } from '../../provider/stories/provider.stories'
 import { Button } from '../index'
 import { Icon } from '../../icon'
 
@@ -92,26 +90,5 @@ export const WithIcons: Story = {
     children: 'Button',
     startIcon: <Icon icon="eos-icons:loading" color="#fff" />,
     endIcon: <Icon icon="material-symbols:send-outline" />,
-  },
-}
-
-export const ComponentToken: NexUIProviderStore = {
-  args: {
-    theme: {
-      button: {
-        colorPrimary: 'red',
-        paddingXLg: '30px',
-        controlHeightLg: '50px',
-      },
-    },
-    ...commonArgs,
-  },
-  render: (props) => {
-    const { theme, ...rest } = props
-    return (
-      <NexUIProvider theme={theme}>
-        <Button {...rest} />
-      </NexUIProvider>
-    )
   },
 }

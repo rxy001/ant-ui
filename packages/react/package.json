@@ -18,15 +18,15 @@
   },
   "dependencies": {
     "@iconify/react": "4.1.1",
-    "@nex-ui/plugins": "workspace:*",
     "@nex-ui/css-system": "workspace:*",
     "@nex-ui/utils": "workspace:*",
     "classnames": "2.5.1",
     "framer-motion": "11.2.4"
   },
   "peerDependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": ">=18",
+    "react-dom": ">=18",
+    "@emotion/react": ">=11"
   },
   "sideEffects": false,
   "clean-package": "../../clean-package.config.json"

@@ -1,19 +1,10 @@
 import { defineConfig } from 'vite'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { resolve } from 'node:path'
 import react from '@vitejs/plugin-react-swc'
-import { nexUIVitePlugin } from '@nex-ui/plugins'
 
-const dirname = fileURLToPath(new URL('./', import.meta.url))
-
-export default defineConfig((config) => {
+export default defineConfig(() => {
   return {
-    plugins: [
-      react(),
-      nexUIVitePlugin({
-        unstable_mode: config.mode === 'development' ? 'transform' : 'emitCss',
-      }),
-    ],
+    plugins: [react()],
     resolve: {
       extensions: [
         '.mjs',
@@ -26,12 +17,9 @@ export default defineConfig((config) => {
         '.css',
       ],
       alias: {
-        '@theme': '../../theme',
-        '@vanilla-extract/css/fileScope': path.join(
-          dirname,
-          '../css-system',
-          'node_modules/@vanilla-extract/css/fileScope',
-        ),
+        '@theme': resolve('../react/src/theme'),
+        '@nex-ui/react': resolve('../react/src'),
+        '@nex-ui/css-system': resolve('../css-system/src'),
       },
     },
   }

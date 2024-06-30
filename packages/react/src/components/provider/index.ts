@@ -1,7 +1,3 @@
-export { NexUIProvider } from './NexUIProvider'
+export * from './Provider'
 
-export type { NexUIProviderProps } from './types'
-
-export { useNexUITheme } from './useNexUITheme'
-
-export { useNexUIConfig } from './useNexUIConfig'
+export type { NexProviderProps } from './types'

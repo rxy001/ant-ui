@@ -1,25 +1,18 @@
 import { useMemo } from 'react'
 import classNames from 'classnames'
-import {
-  button,
-  buttonStartIcon,
-  buttonEndIcon,
-  btnTokens,
-  globalTokens,
-} from '@theme'
-import { assignTokens } from '@nex-ui/css-system'
-import { useNexUIConfig, useNexUITheme } from '../provider'
+// import { button, buttonStartIcon, buttonEndIcon } from '@theme'
+import { useNexContext } from '../provider'
 import type { ButtonIconProps, ButtonProps } from './types'
 import { Icon } from '../icon'
 
 const ButtonStartIcon = ({ children, size, spin }: ButtonIconProps) => {
-  const { prefix } = useNexUIConfig()
+  const { prefix } = useNexContext()
 
   return (
     <span
       className={classNames(
         `${prefix}-start-icon`,
-        buttonStartIcon({ size: size === 'small' ? size : undefined, spin }),
+        // buttonStartIcon({ size: size === 'small' ? size : undefined, spin }),
       )}
     >
       {children}
@@ -28,13 +21,13 @@ const ButtonStartIcon = ({ children, size, spin }: ButtonIconProps) => {
 }
 
 const ButtonEndIcon = ({ children, size }: ButtonIconProps) => {
-  const { prefix } = useNexUIConfig()
+  const { prefix } = useNexContext()
 
   return (
     <span
       className={classNames(
         `${prefix}-end-icon`,
-        buttonEndIcon({ size: size === 'small' ? size : undefined }),
+        // buttonEndIcon({ size: size === 'small' ? size : undefined }),
       )}
     >
       {children}
@@ -58,35 +51,15 @@ export const useButton = ({
   onClick: onClickProp,
   ...restProps
 }: ButtonProps) => {
-  const theme = useNexUITheme('button')
-  const { prefix } = useNexUIConfig()
+  const { prefix, theme } = useNexContext()
+
+  console.log(theme)
 
   const mergedStyle = useMemo(
     () => ({
-      ...assignTokens(globalTokens, btnTokens)(theme),
       ...style,
     }),
-    [style, theme],
-  )
-
-  const mergedClassName = useMemo(
-    () =>
-      classNames(
-        `${prefix}-btn`,
-        button({ variant, size, disabled, block, shape, loading, iconOnly }),
-        className,
-      ),
-    [
-      prefix,
-      block,
-      className,
-      disabled,
-      shape,
-      size,
-      variant,
-      loading,
-      iconOnly,
-    ],
+    [style],
   )
 
   const onClick = (
@@ -106,7 +79,6 @@ export const useButton = ({
       type,
       disabled,
       style: mergedStyle,
-      className: mergedClassName,
       ...restProps,
     }),
     startIcon:

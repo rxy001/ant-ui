@@ -1,5 +1,14 @@
-export * from './components'
+import { button, wave } from './components'
+import { colors, typographt, spacing } from './tokens'
 
-export * from './globalTokens.css'
+export const defaultTheme = {
+  components: {
+    button,
+    wave,
+  },
+  colors,
+  typographt,
+  spacing,
+}
 
-// export * from './colors'
+export type DefaultTheme = typeof defaultTheme

@@ -1,6 +1,6 @@
 import { motion, useAnimate } from 'framer-motion'
 import { useEffect } from 'react'
-import { wave } from '@theme'
+// import { wave } from '@theme'
 import { getWaveColor } from './utils'
 import type { WaveMotionProps } from './types'
 
@@ -32,7 +32,7 @@ export const WaveMotion = ({ target, root }: WaveMotionProps) => {
   return (
     <motion.div
       ref={scope}
-      className={wave()}
+      // className={wave()}
       style={{ width, height, borderRadius }}
     />
   )

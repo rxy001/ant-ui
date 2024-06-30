@@ -1,6 +1,6 @@
-import { recipe } from '@nex-ui/css-system'
+import { defineVariants } from '@nex-ui/css-system'
 
-export const wave = recipe({
+export const wave = defineVariants({
   base: {
     position: 'absolute',
     inset: '-1px',

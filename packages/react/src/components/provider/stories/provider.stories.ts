@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { NexUIProvider } from '../NexUIProvider'
+import { NexUIProvider } from '../Provider'
 
 const meta = {
   title: 'Components/NexUIProvider',

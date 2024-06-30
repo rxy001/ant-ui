@@ -17,9 +17,7 @@
   "plugins": ["@typescript-eslint", "prettier"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    // 指定 ECMAScript 语法版本
     "ecmaVersion": "latest",
-    // ECMAScript modules.
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
